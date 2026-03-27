@@ -12,7 +12,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test1",
         url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80",
       },
     ],
@@ -21,7 +21,7 @@ export const productData = [
       name: "Tech Store",
       shop_avatar: {
         public_id: "shop1",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/men/32.jpg",
       },
     },
     price: 950,
@@ -40,7 +40,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test2",
         url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80",
       },
     ],
@@ -49,7 +49,7 @@ export const productData = [
       name: "Mobile Hub",
       shop_avatar: {
         public_id: "shop2",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/men/45.jpg",
       },
     },
     price: 1400,
@@ -68,7 +68,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test3",
         url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
       },
     ],
@@ -77,7 +77,7 @@ export const productData = [
       name: "Fashion Feet",
       shop_avatar: {
         public_id: "shop3",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/women/65.jpg",
       },
     },
     price: 180,
@@ -96,7 +96,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test4",
         url: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500&q=80",
       },
     ],
@@ -105,7 +105,7 @@ export const productData = [
       name: "Watch World",
       shop_avatar: {
         public_id: "shop4",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/men/22.jpg",
       },
     },
     price: 220,
@@ -124,7 +124,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test5",
         url: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80",
       },
     ],
@@ -133,7 +133,7 @@ export const productData = [
       name: "Bag Center",
       shop_avatar: {
         public_id: "shop5",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/women/28.jpg",
       },
     },
     price: 130,
@@ -152,7 +152,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test6",
         url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
       },
     ],
@@ -161,7 +161,7 @@ export const productData = [
       name: "Audio Point",
       shop_avatar: {
         public_id: "shop6",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/men/61.jpg",
       },
     },
     price: 160,
@@ -180,7 +180,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test7",
         url: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500&q=80",
       },
     ],
@@ -189,7 +189,7 @@ export const productData = [
       name: "Gaming Zone",
       shop_avatar: {
         public_id: "shop7",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/men/19.jpg",
       },
     },
     price: 110,
@@ -208,7 +208,7 @@ export const productData = [
       "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
     image_Url: [
       {
-        public_id: "test",
+        public_id: "test8",
         url: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
       },
     ],
@@ -217,7 +217,7 @@ export const productData = [
       name: "Home Style",
       shop_avatar: {
         public_id: "shop8",
-        url: "https://via.placeholder.com/50",
+        url: "https://randomuser.me/api/portraits/women/44.jpg",
       },
     },
     price: 75,
@@ -225,6 +225,118 @@ export const productData = [
     stock: 30,
     sold_out: 10,
     ratings: 4.1,
+  },
+  {
+    id: 9,
+    category: "Beauty",
+    name: "Skin Care Kit",
+    description:
+      "Complete beauty skincare kit with cleanser, serum, and moisturizer for glowing skin.",
+    image:
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80",
+    image_Url: [
+      {
+        public_id: "test9",
+        url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80",
+      },
+    ],
+    shop: {
+      id: 109,
+      name: "Beauty Glow",
+      shop_avatar: {
+        public_id: "shop9",
+        url: "https://randomuser.me/api/portraits/women/12.jpg",
+      },
+    },
+    price: 95,
+    discount_price: 79,
+    stock: 22,
+    sold_out: 8,
+    ratings: 4.4,
+  },
+  {
+    id: 10,
+    category: "Kitchen",
+    name: "Non-Stick Cookware Set",
+    description:
+      "Premium non-stick cookware set perfect for daily cooking with durable and heat-resistant material.",
+    image:
+      "https://images.unsplash.com/photo-1584990347449-a1f6b7d6f0a8?w=500&q=80",
+    image_Url: [
+      {
+        public_id: "test10",
+        url: "https://images.unsplash.com/photo-1584990347449-a1f6b7d6f0a8?w=500&q=80",
+      },
+    ],
+    shop: {
+      id: 110,
+      name: "Kitchen Plus",
+      shop_avatar: {
+        public_id: "shop10",
+        url: "https://randomuser.me/api/portraits/men/52.jpg",
+      },
+    },
+    price: 210,
+    discount_price: 175,
+    stock: 14,
+    sold_out: 5,
+    ratings: 4.5,
+  },
+  {
+    id: 11,
+    category: "Electronics",
+    name: "Smart LED TV 43 Inch",
+    description:
+      "Full HD smart LED TV with built-in apps, vibrant display, and immersive sound experience.",
+    image:
+      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80",
+    image_Url: [
+      {
+        public_id: "test11",
+        url: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80",
+      },
+    ],
+    shop: {
+      id: 111,
+      name: "Electro Mart",
+      shop_avatar: {
+        public_id: "shop11",
+        url: "https://randomuser.me/api/portraits/men/36.jpg",
+      },
+    },
+    price: 620,
+    discount_price: 549,
+    stock: 9,
+    sold_out: 4,
+    ratings: 4.6,
+  },
+  {
+    id: 12,
+    category: "Fashion",
+    name: "Men Casual Jacket",
+    description:
+      "Stylish and comfortable casual jacket for men, suitable for winter and evening outings.",
+    image:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80",
+    image_Url: [
+      {
+        public_id: "test12",
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80",
+      },
+    ],
+    shop: {
+      id: 112,
+      name: "Style Point",
+      shop_avatar: {
+        public_id: "shop12",
+        url: "https://randomuser.me/api/portraits/men/41.jpg",
+      },
+    },
+    price: 150,
+    discount_price: 120,
+    stock: 17,
+    sold_out: 6,
+    ratings: 4.3,
   },
 ];
 
@@ -313,7 +425,7 @@ export const brandingData = [
   {
     id: 3,
     title: "Affordable Prices",
-    description: "Get Factory default price",
+    description: "Get factory default price",
     icon: "MdLocalOffer",
   },
   {

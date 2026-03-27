@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillHeart, AiFillStar, AiOutlineEye, AiOutlineHeart, AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import ProductDetailCart from "../ProductDetailCart/ProductDetailCart";
 const ProductCard = ({ data }) => {
   const [click,setClick]=useState()
   const [open,setOpen]=useState()
@@ -44,7 +44,7 @@ const ProductCard = ({ data }) => {
             ? data.name.slice(0, 40) + "..."
             : data?.name || "Product Name"}
         </h4>
-        <div className="flex">
+        <div className="flex mt-2">
           <AiFillStar className="mr-2 cursor-pointer" color="#F6BA00"/>
           <AiFillStar className="mr-2 cursor-pointer" color="#F6BA00"/>
           <AiFillStar className="mr-2 cursor-pointer" color="#F6BA00"/>
@@ -89,6 +89,11 @@ const ProductCard = ({ data }) => {
             onClick={()=>setClick(!click)}
             color="#444"
             title="Add to cart"/>
+            {
+              open?(
+                <ProductDetailCart setOpen={setOpen} data={data}/>
+              ):null
+            }
         </div>
     </div>
   );
