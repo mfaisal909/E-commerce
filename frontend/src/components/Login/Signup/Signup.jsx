@@ -47,12 +47,7 @@ export default function Signup() {
 
       const res = await axios.post(
         `${server}/user/create-user`,
-        newForm,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }
+        newForm
       )
 
       console.log(res.data)

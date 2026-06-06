@@ -10,15 +10,18 @@ import {
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { BiMenuAltLeft, BiX } from "react-icons/bi";
 import DropDown from "./DropDown";
-
+import {useSelector} from 'react-redux'
+import backend_url from '../../../server'
 export default function Header() {
+  const {isAuthenticated,user}=useSelector((state)=>state.user)
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [mobileSearch, setMobileSearch] = useState(false);
-
+  const [openCart, setOpenCart] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
   const dropdownRef = useRef(null);
 
   // Search filter
@@ -92,7 +95,7 @@ export default function Header() {
                           <div className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition border-b border-gray-100 last:border-b-0">
                             <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden">
                               <img
-                                src={product.image || "https://via.placeholder.com/50"}
+                                src={product.image || "https://dummyimage.com/50x50/cccccc/999999?text=Product"}
                                 alt={product.name}
                                 className="w-full h-full object-cover"
                               />
@@ -250,13 +253,24 @@ export default function Header() {
               >
                 <AiOutlineSearch className="text-xl" />
               </button>
-
-              <Link
+                {
+                  isAuthenticated?(
+                    <Link
+                to="/profile"
+                className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white"
+              >
+               {/* <img src={`${backend_url}user.avatar`} alt="" />*/}
+              </Link>
+                  ):(
+                    <Link
                 to="/login"
                 className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white"
               >
                 <AiOutlineUser className="text-xl" />
               </Link>
+                  )
+                }
+              
 
               <button className="relative w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
                 <AiOutlineShoppingCart className="text-xl" />
@@ -297,7 +311,7 @@ export default function Header() {
                       <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition border-b border-gray-100 last:border-b-0">
                         <div className="w-10 h-10 rounded-xl bg-gray-100 overflow-hidden">
                           <img
-                            src={product.image || "https://via.placeholder.com/40"}
+                            src={product.image || "https://dummyimage.com/40x40/cccccc/999999?text=+"}
                             alt={product.name}
                             className="w-full h-full object-cover"
                           />

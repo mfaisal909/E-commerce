@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
@@ -29,11 +33,14 @@ const userSchema = new mongoose.Schema(
 // password hash before save
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
 
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
+  try {
+    this.password = await bcrypt.hash(this.password, 10);
+  } catch (error) {
+    throw error;
+  }
 });
 
 // compare password

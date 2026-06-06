@@ -12,7 +12,7 @@ const ProductCard = ({ data }) => {
   const imageSrc =
     data?.image_Url?.[0]?.url ||
     data?.image ||
-    "https://via.placeholder.com/150";
+    "https://dummyimage.com/150x150/cccccc/999999?text=Product";
 
   return (
     <div className="w-full min-h-[370px] bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-4 relative cursor-pointer border border-gray-100">
@@ -24,7 +24,7 @@ const ProductCard = ({ data }) => {
             alt={data?.name || "product"}
             className="w-full h-full object-contain"
             onError={(e) => {
-              e.target.src = "https://via.placeholder.com/150";
+              e.target.src = "https://dummyimage.com/150x150/cccccc/999999?text=No+Image";
             }}
           />
         </div>
