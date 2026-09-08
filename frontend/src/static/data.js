@@ -19,6 +19,8 @@ export const productData = [
     shop: {
       id: 101,
       name: "Tech Store",
+      email: "info@techstore.com",
+      location: "New York, USA",
       shop_avatar: {
         public_id: "shop1",
         url: "https://randomuser.me/api/portraits/men/32.jpg",
@@ -47,6 +49,8 @@ export const productData = [
     shop: {
       id: 102,
       name: "Mobile Hub",
+      email: "support@mobilehub.com",
+      location: "San Francisco, USA",
       shop_avatar: {
         public_id: "shop2",
         url: "https://randomuser.me/api/portraits/men/45.jpg",
@@ -75,6 +79,8 @@ export const productData = [
     shop: {
       id: 103,
       name: "Fashion Feet",
+      email: "hello@fashionfeet.com",
+      location: "London, UK",
       shop_avatar: {
         public_id: "shop3",
         url: "https://randomuser.me/api/portraits/women/65.jpg",
@@ -103,6 +109,8 @@ export const productData = [
     shop: {
       id: 104,
       name: "Watch World",
+      email: "contact@watchworld.com",
+      location: "Dubai, UAE",
       shop_avatar: {
         public_id: "shop4",
         url: "https://randomuser.me/api/portraits/men/22.jpg",
@@ -131,6 +139,8 @@ export const productData = [
     shop: {
       id: 105,
       name: "Bag Center",
+      email: "sales@bagcenter.com",
+      location: "Paris, France",
       shop_avatar: {
         public_id: "shop5",
         url: "https://randomuser.me/api/portraits/women/28.jpg",
@@ -159,6 +169,8 @@ export const productData = [
     shop: {
       id: 106,
       name: "Audio Point",
+      email: "contact@audiopoint.com",
+      location: "Berlin, Germany",
       shop_avatar: {
         public_id: "shop6",
         url: "https://randomuser.me/api/portraits/men/61.jpg",
@@ -187,6 +199,8 @@ export const productData = [
     shop: {
       id: 107,
       name: "Gaming Zone",
+      email: "support@gamingzone.com",
+      location: "Seoul, South Korea",
       shop_avatar: {
         public_id: "shop7",
         url: "https://randomuser.me/api/portraits/men/19.jpg",
@@ -215,6 +229,8 @@ export const productData = [
     shop: {
       id: 108,
       name: "Home Style",
+      email: "hello@homestyle.com",
+      location: "Tokyo, Japan",
       shop_avatar: {
         public_id: "shop8",
         url: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -243,6 +259,8 @@ export const productData = [
     shop: {
       id: 109,
       name: "Beauty Glow",
+      email: "info@beautyglow.com",
+      location: "Los Angeles, USA",
       shop_avatar: {
         public_id: "shop9",
         url: "https://randomuser.me/api/portraits/women/12.jpg",
@@ -271,6 +289,8 @@ export const productData = [
     shop: {
       id: 110,
       name: "Kitchen Plus",
+      email: "contact@kitchenplus.com",
+      location: "Chicago, USA",
       shop_avatar: {
         public_id: "shop10",
         url: "https://randomuser.me/api/portraits/men/52.jpg",
@@ -299,6 +319,8 @@ export const productData = [
     shop: {
       id: 111,
       name: "Electro Mart",
+      email: "support@electromart.com",
+      location: "Frankfurt, Germany",
       shop_avatar: {
         public_id: "shop11",
         url: "https://randomuser.me/api/portraits/men/36.jpg",
@@ -327,6 +349,8 @@ export const productData = [
     shop: {
       id: 112,
       name: "Style Point",
+      email: "hello@stylepoint.com",
+      location: "Milan, Italy",
       shop_avatar: {
         public_id: "shop12",
         url: "https://randomuser.me/api/portraits/men/41.jpg",

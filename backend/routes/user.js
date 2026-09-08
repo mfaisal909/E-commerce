@@ -170,4 +170,27 @@ router.post(
   })
 );
 
+// ==================== SEND MESSAGE TO SHOP ====================
+router.post(
+  "/send-message",
+  catchAsyncErrors(async (req, res, next) => {
+    const { email, subject, message } = req.body;
+
+    if (!email || !subject || !message) {
+      return next(new ErrorHandler("Email, subject, and message are required", 400));
+    }
+
+    await sendMail({
+      email,
+      subject,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Message sent successfully.",
+    });
+  })
+);
+
 module.exports = router;

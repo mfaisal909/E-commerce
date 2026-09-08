@@ -7,11 +7,13 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from "react-icons/ai";
+import Wishlist from "../../Wishlist/Wishlist";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { BiMenuAltLeft, BiX } from "react-icons/bi";
 import DropDown from "./DropDown";
 import {useSelector} from 'react-redux'
 import backend_url from '../../../server'
+import Cart from "../../Cart/Cart";
 export default function Header() {
   const {isAuthenticated,user}=useSelector((state)=>state.user)
   const [searchTerm, setSearchTerm] = useState("");
@@ -188,19 +190,25 @@ export default function Header() {
             {/* Right Icons */}
             <div className="flex items-center gap-3">
               {/* Wishlist */}
-              <button className="relative w-11 h-11 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300">
+              <button className="relative w-11 h-11 rounded-2xl bg-white/10
+               hover:bg-white/20 backdrop-blur-md flex items-center 
+               justify-center transition-all duration-300"
+               onClick={()=>setOpenWishlist(true)}>
                 <AiOutlineHeart className="text-white text-xl" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-semibold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow">
-                  0
+                  2
                 </span>
               </button>
 
               {/* Cart */}
-              <button className="relative w-11 h-11 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300">
+              <button className="relative w-11 h-11 rounded-2xl bg-white/10
+               hover:bg-white/20 backdrop-blur-md flex items-center
+                justify-center transition-all duration-300" 
+                onClick={()=>setOpenCart(true)}>
                 <AiOutlineShoppingCart className="text-white text-xl" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-semibold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow">
                   2
-                </span>
+                </span>  
               </button>
 
               {/* User */}
@@ -272,7 +280,7 @@ export default function Header() {
                 }
               
 
-              <button className="relative w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
+              <button onClick={() => setOpenCart(true)} className="relative w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
                 <AiOutlineShoppingCart className="text-xl" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-semibold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center">
                   2
@@ -420,6 +428,10 @@ export default function Header() {
           </div>
         </>
       )}
+
+      {openCart && <Cart setOpenCart={setOpenCart} />}
+
+      {openWishlist && <Wishlist setOpenWishlist={setOpenWishlist} />}
     </header>
   );
 }
