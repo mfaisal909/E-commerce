@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, 'config', '.env') });
 const nodemailer = require('nodemailer');
 
 const authMethod = (process.env.SMTP_AUTH_METHOD || 'login').toLowerCase();

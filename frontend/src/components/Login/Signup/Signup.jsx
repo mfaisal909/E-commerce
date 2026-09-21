@@ -53,7 +53,11 @@ export default function Signup() {
       console.log(res.data)
 
       if (res.data.success === true) {
-        toast.success("User created successfully")
+        if (res.data.emailSent) {
+          toast.success(res.data.message)
+        } else {
+          toast.warning(res.data.message)
+        }
         navigate("/login")
       }
     } catch (err) {

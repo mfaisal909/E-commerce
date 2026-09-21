@@ -21,7 +21,7 @@ export default function ActivationPage() {
         }
         activationEmail();
       }
-    },[activation_token])
+    },)
   return (
     <div>
         {

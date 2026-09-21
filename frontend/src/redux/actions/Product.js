@@ -22,25 +22,32 @@ export const createProduct =
 
       const { data } = await axios.post(
         `${server}/product/create-product`,
-        name,
-        description,
-        category,
-        tags,
-        originalPrice,
-        discountPrice,
-        stock,
-        shopId,
-        images,
+        {
+          name,
+          description,
+          category,
+          tags,
+          originalPrice,
+          discountPrice,
+          stock,
+          shopId,
+          images,
+        },
+        { withCredentials: true }
       );
       dispatch({
         type: "productCreateSuccess",
         payload: data.product,
       });
+      return true;
     } catch (error) {
+      const message =
+        error.response?.data?.message || "Could not create product";
       dispatch({
         type: "productCreateFail",
-        payload: error.response.data.message,
+        payload: message,
       });
+      return false;
     }
   };
 
@@ -50,14 +57,6 @@ export const getAllProductsShop = (id) => async (dispatch) => {
     dispatch({
       type: "getAllProductsShopRequest",
     });
-
-    if (!id) {
-      dispatch({
-        type: "getAllProductsShopFailed",
-        payload: "Shop ID is required",
-      });
-      return;
-    }
 
     const { data } = await axios.get(
       `${server}/product/get-all-products-shop/${id}`
@@ -69,7 +68,7 @@ export const getAllProductsShop = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "getAllProductsShopFailed",
-      payload: error.response?.data?.message || error.message,
+      payload: error.response.data.message,
     });
   }
 };
@@ -92,15 +91,17 @@ export const deleteProduct = (id) => async (dispatch) => {
       type: "deleteProductSuccess",
       payload: data.message,
     });
+    return true;
   } catch (error) {
     dispatch({
       type: "deleteProductFailed",
-      payload: error.response.data.message,
+      payload: error.response?.data?.message || "Could not delete product",
     });
+    return false;
   }
 };
 
-// get all products from API
+// get all products
 export const getAllProducts = () => async (dispatch) => {
   try {
     dispatch({
@@ -116,29 +117,6 @@ export const getAllProducts = () => async (dispatch) => {
     dispatch({
       type: "getAllProductsFailed",
       payload: error.response.data.message,
-    });
-  }
-};
-
-// Load products from static data (fallback when API is not available)
-export const loadStaticProducts = () => (dispatch) => {
-  try {
-    dispatch({
-      type: "getAllProductsRequest",
-    });
-
-    // Import static data
-    import("../../static/data.js").then(({ productData }) => {
-      dispatch({
-        type: "getAllProductsSuccess",
-        payload: productData,
-      });
-    });
-  } catch (error) {
-    console.error("Error loading static products:", error);
-    dispatch({
-      type: "getAllProductsFailed",
-      payload: "Failed to load products",
     });
   }
 };

@@ -2,26 +2,30 @@ import React, { useState } from "react";
 import { AiFillHeart, AiFillStar, AiOutlineEye, AiOutlineHeart, AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ProductDetailCart from "../ProductDetailCart/ProductDetailCart";
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, isEvent = false }) => {
   const [click,setClick]=useState()
   const [open,setOpen]=useState()
-  const productName = data?.name
-    ? data.name.replace(/\s+/g, "-")
+  const product = data || {};
+  const productId = product?._id || product?.id || "product";
+  const productName = product.name
+    ? product.name.replace(/\s+/g, "-")
     : "product";
 
   const imageSrc =
-    data?.image_Url?.[0]?.url ||
-    data?.image ||
+    product.image_Url?.[0]?.url ||
+    product.image ||
     "https://dummyimage.com/150x150/cccccc/999999?text=Product";
+
+  const detailUrl = `/product/${productId}${isEvent ? "?isEvent=true" : ""}`;
 
   return (
     <div className="w-full min-h-[370px] bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-4 relative cursor-pointer border border-gray-100">
       {/* Product Image */}
-      <Link to={`/product/${productName}`}>
+      <Link to={detailUrl}>
         <div className="w-full h-[190px] bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden mb-4">
           <img
             src={imageSrc}
-            alt={data?.name || "product"}
+            alt={product.name || "product"}
             className="w-full h-full object-contain"
             onError={(e) => {
               e.target.src = "https://dummyimage.com/150x150/cccccc/999999?text=No+Image";
@@ -33,16 +37,16 @@ const ProductCard = ({ data }) => {
       {/* Shop Name */}
       <Link to="/">
         <h5 className="text-sm text-gray-500 mb-2">
-          {data?.shop?.name || "No Shop Name"}
+          {product.shop?.name || "No Shop Name"}
         </h5>
       </Link>
 
       {/* Product Name */}
-      <Link to={`/product/${productName}`}>
+      <Link to={detailUrl}>
         <h4 className="text-base font-medium text-gray-800 leading-6">
-          {data?.name?.length > 40
-            ? data.name.slice(0, 40) + "..."
-            : data?.name || "Product Name"}
+          {product.name?.length > 40
+            ? product.name.slice(0, 40) + "..."
+            : product.name || "Product Name"}
         </h4>
         <div className="flex mt-2">
           <AiFillStar className="mr-2 cursor-pointer" color="#F6BA00"/>
@@ -54,14 +58,14 @@ const ProductCard = ({ data }) => {
         <div className="py-2 flex items-center justify-between">
             <div className="flex">
               <h5 className="text-lg font-bold text-black mr-2">
-                {data.price===0?data.price:data.discount_price}$
+                {(product.price === 0 ? product.price : product.discount_price) ?? 0}$
               </h5>
               <h4 className="text-sm text-red-600 line-through font-medium">
-                {data.price?data.price + " $":null}
+                {product.price ? product.price + " $" : null}
               </h4>
             </div>
             <span className="font-[400] text-[17px] text-[#68d284]">
-              {data.sold_out} sold
+              {product.sold_out || 0} sold
             </span>
         </div>
         </Link>
@@ -91,7 +95,7 @@ const ProductCard = ({ data }) => {
             title="Add to cart"/>
             {
               open?(
-                <ProductDetailCart setOpen={setOpen} data={data}/>
+                <ProductDetailCart setOpen={setOpen} data={product}/>
               ):null
             }
         </div>

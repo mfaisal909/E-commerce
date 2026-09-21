@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter your email"],
       unique: true,
     },
+    phoneNumber: {
+      type: String,
+      default: "",
+    },
     password: {
       type: String,
       required: [true, "Please enter your password"],
@@ -22,6 +26,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    addresses: [
+      {
+        address1: { type: String, required: true },
+        address2: { type: String, default: "" },
+        country: { type: String, required: true },
+        city: { type: String, required: true },
+        zipCode: { type: String, required: true },
+        addressType: { type: String, required: true },
+      },
+    ],
     isVerified: {
       type: Boolean,
       default: false,
@@ -31,16 +45,12 @@ const userSchema = new mongoose.Schema(
 );
 
 // password hash before save
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
     return;
   }
 
-  try {
-    this.password = await bcrypt.hash(this.password, 10);
-  } catch (error) {
-    throw error;
-  }
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 // compare password

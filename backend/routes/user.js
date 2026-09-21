@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const jwt = require("jsonwebtoken");
 const User = require("../model/user");
 const { upload } = require("../multer");
@@ -33,7 +32,7 @@ router.post(
 
     // Create user
     const filename = req.file.filename;
-    const fileUrl = path.join("uploads", filename);
+    const fileUrl = `uploads/${filename}`;
 
     const user = await User.create({
       name,
@@ -66,6 +65,7 @@ router.post(
 
     res.status(201).json({
       success: true,
+      emailSent,
       message: emailSent
         ? "User created successfully. Verification email sent."
         : "User created successfully, but verification email could not be sent.",
@@ -114,6 +114,15 @@ router.post(
   })
 );
 
+// ==================== LOGOUT USER ====================
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({
+    success: true,
+    message: "Logged out successfully",
+  });
+});
+
 // ==================== GET USER ====================
 router.get(
   "/getuser",
@@ -127,6 +136,159 @@ router.get(
 
     res.status(200).json({
       success: true,
+      user,
+    });
+  })
+);
+
+// ==================== UPDATE USER INFORMATION ====================
+router.put(
+  "/update-user-info",
+  catchAsyncErrors(async (req, res, next) => {
+    const { name, email, phoneNumber, password } = req.body;
+    const user = await User.findOne().select("+password");
+
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    if (!name || !email || !phoneNumber) {
+      return next(new ErrorHandler("Please fill all fields", 400));
+    }
+
+    user.name = name;
+    user.email = email;
+    user.phoneNumber = phoneNumber;
+    if (password) {
+      user.password = password;
+    }
+    await user.save();
+
+    const userResponse = user.toObject();
+    delete userResponse.password;
+
+    res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      user: userResponse,
+    });
+  })
+);
+
+// ==================== UPDATE USER PASSWORD ====================
+router.put(
+  "/update-user-password",
+  catchAsyncErrors(async (req, res, next) => {
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+    const user = await User.findOne().select("+password");
+
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      return next(new ErrorHandler("Please fill all password fields", 400));
+    }
+
+    if (newPassword.length < 6) {
+      return next(new ErrorHandler("Password should be greater than 6 characters", 400));
+    }
+
+    if (newPassword !== confirmPassword) {
+      return next(new ErrorHandler("New passwords do not match", 400));
+    }
+
+    const isPasswordValid = await user.comparePassword(oldPassword);
+    if (!isPasswordValid) {
+      return next(new ErrorHandler("Old password is incorrect", 400));
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Password updated successfully",
+    });
+  })
+);
+
+// ==================== UPDATE AVATAR ====================
+router.put(
+  "/update-avatar",
+  catchAsyncErrors(async (req, res, next) => {
+    const { avatar } = req.body;
+    const user = await User.findOne();
+
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    if (!avatar || typeof avatar !== "string") {
+      return next(new ErrorHandler("Avatar image is required", 400));
+    }
+
+    user.avatar = avatar;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Avatar updated successfully",
+      user,
+    });
+  })
+);
+
+// ==================== USER ADDRESSES ====================
+router.post(
+  "/update-user-addresses",
+  catchAsyncErrors(async (req, res, next) => {
+    const { address1, address2, country, city, zipCode, addressType } = req.body;
+    const user = await User.findOne();
+
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    if (!address1 || !country || !city || !zipCode || !addressType) {
+      return next(new ErrorHandler("Please fill all address fields", 400));
+    }
+
+    user.addresses.push({ address1, address2, country, city, zipCode, addressType });
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Address added successfully",
+      user,
+    });
+  })
+);
+
+router.delete(
+  "/delete-user-address/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findOne();
+
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    const addressExists = user.addresses.some(
+      (address) => address._id.toString() === req.params.id
+    );
+    if (!addressExists) {
+      return next(new ErrorHandler("Address not found", 404));
+    }
+
+    user.addresses = user.addresses.filter(
+      (address) => address._id.toString() !== req.params.id
+    );
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Address deleted successfully",
       user,
     });
   })

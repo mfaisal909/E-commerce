@@ -1,21 +1,51 @@
-import React from 'react'
-import Header from '../components/Login/Layout/Header'
-import ProfileSideBar from '../components/Profile/ProfileSideBar'
-import ProfileContent from '../components/Profile/ProfileContent'
-import { useState } from 'react'
-const ProfilePage = () => {
-    const [active, setActive] = useState(1);
-  return (
-    <div>
-        <Header/>
-        <div>
-            <div>
-                <ProfileSideBar active={active} setActive={setActive} />
-            </div>
-            <ProfileContent active={active} />
-        </div>
-    </div>
-  )
-}
+import React, { useState } from "react";
+import Header from "../components/Login/Layout/Header";
+import ProfileSideBar from "../components/Profile/ProfileSidebar";
+import ProfileContent from "../components/Profile/ProfileContent";
+import { useSelector } from "react-redux";
 
-export default ProfilePage
+const ProfilePage = () => {
+  const { loading } = useSelector((state) => state.user);
+  const [active, setActive] = useState(1);
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {loading ? (
+        <div className="flex min-h-screen items-center justify-center text-gray-600">
+          Loading...
+        </div>
+      ) : (
+        <>
+          {/* Header */}
+          <Header />
+
+          {/* Main Profile Section */}
+          <main className="w-full bg-gray-100 py-6 sm:py-8 lg:py-10">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:gap-8 lg:px-8">
+
+              {/* Sidebar */}
+              <aside className="w-full flex-shrink-0 lg:sticky lg:top-24 lg:w-[280px] lg:self-start">
+                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                  <ProfileSideBar
+                    active={active}
+                    setActive={setActive}
+                  />
+                </div>
+              </aside>
+
+              {/* Profile Content */}
+              <section className="min-w-0 flex-1">
+                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                  <ProfileContent active={active} />
+                </div>
+              </section>
+
+            </div>
+          </main>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ProfilePage;
